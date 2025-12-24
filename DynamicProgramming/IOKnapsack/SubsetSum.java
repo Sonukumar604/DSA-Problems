@@ -53,7 +53,6 @@ public class SubsetSum{
         } else {
             result = isSubsetSumMemo(arr, sum, n - 1, dp) || isSubsetSumMemo(arr, sum - arr[n - 1], n - 1);
         }
-
         // Store the result before returning.
         dp[n][sum] = result ? 1 : 0;
         return result;
@@ -74,7 +73,6 @@ public class SubsetSum{
             dp[i][0] = true;
         }
         // With 0 items, no sum > 0 is possible. This is false by default in a boolean array.
-
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= sum; j++){
                 if(arr[i-1] <= j){

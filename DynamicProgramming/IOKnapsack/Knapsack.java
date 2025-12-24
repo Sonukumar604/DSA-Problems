@@ -14,6 +14,7 @@ public class Knapsack{
             return Math.max(include, exclude);
         }
     }
+    
     //Memoization
     static int[][] dp;
     public static int knapsackMemo(int wt[], int val[], int w, int n){
@@ -33,7 +34,6 @@ public class Knapsack{
         }
         return dp[n][w];
     }
-
     // Bottom-up Dynamic Programming (Tabulation)
     public static int knapsackDP(int wt[], int val[], int w, int n){
         int[][] t = new int[n + 1][w + 1];
