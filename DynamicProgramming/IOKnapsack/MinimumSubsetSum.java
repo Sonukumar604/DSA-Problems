@@ -100,7 +100,6 @@ public class MinimumSubsetSum{
         dp[n][sum] = result ? 1 : 0;
         return result;
     }
-
     public static void main(String[] args) {
         int[] arr= {1,2,7};
         System.out.println("Original Array: " + Arrays.toString(arr));

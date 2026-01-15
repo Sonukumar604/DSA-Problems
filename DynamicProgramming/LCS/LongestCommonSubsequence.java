@@ -68,6 +68,40 @@ public class LongestCommonSubsequence {
         return dp[m][n];
     }
 
+    // 4. Print LCS String
+    public static String printLCS(String x, String y, int m, int n) {
+        int[][] dp = new int[m + 1][n + 1];
+
+        // Build the DP table
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0 || j == 0) {
+                    dp[i][j] = 0;
+                } else if (x.charAt(i - 1) == y.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        // Backtrack to find the LCS string
+        int i = m, j = n;
+        StringBuilder sb = new StringBuilder();
+        while (i > 0 && j > 0) {
+            if (x.charAt(i - 1) == y.charAt(j - 1)) {
+                sb.append(x.charAt(i - 1));
+                i--;
+                j--;
+            } else if (dp[i - 1][j] > dp[i][j - 1]) {
+                i--;
+            } else {
+                j--;
+            }
+        }
+        return sb.reverse().toString();
+    }
+
     public static void main(String[] args) {
         String x = "AGGTAB";
         String y = "GXTXAYB";
@@ -81,5 +115,7 @@ public class LongestCommonSubsequence {
         System.out.println("Memoization LCS Length: " + lcsMemoized(x, y, m, n, dp));
 
         System.out.println("Recursive LCS Length: " + lcsRecursive(x, y, m, n));
+
+        System.out.println("LCS String: " + printLCS(x, y, m, n));
     }
 }

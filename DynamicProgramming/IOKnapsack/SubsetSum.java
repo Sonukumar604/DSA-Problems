@@ -51,7 +51,7 @@ public class SubsetSum{
         if (arr[n - 1] > sum) {
             result = isSubsetSumMemo(arr, sum, n - 1, dp);
         } else {
-            result = isSubsetSumMemo(arr, sum, n - 1, dp) || isSubsetSumMemo(arr, sum - arr[n - 1], n - 1);
+            result = isSubsetSumMemo(arr, sum, n - 1, dp) || isSubsetSumMemo(arr, sum - arr[n - 1], n - 1, dp);
         }
         // Store the result before returning.
         dp[n][sum] = result ? 1 : 0;

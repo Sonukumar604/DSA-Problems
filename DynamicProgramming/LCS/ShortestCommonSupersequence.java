@@ -3,7 +3,7 @@
  * The length of SCS = (length of str1) + (length of str2) - (length of LCS).
  * The SCS string is constructed by backtracking through the LCS DP table.
  */
-public class ShortestCommonSuperSequence {
+public class ShortestCommonSupersequence {
     /**
      * Computes the DP table for the Longest Common Subsequence (LCS).
      * The value at t[m][n] will be the length of the LCS.

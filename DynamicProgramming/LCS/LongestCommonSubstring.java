@@ -14,17 +14,14 @@ public class LongestCommonSubstring {
         if (m == 0 || n == 0) {
             return count;
         }
-
         // If the last characters match, we extend the current substring.
         if (x.charAt(m - 1) == y.charAt(n - 1)) {
             count = lcsRecursive(x, y, m - 1, n - 1, count + 1);
         }
-
         // We also need to check for other substrings that might not include the current characters.
         // The current suffix is broken, so we start a new search with count = 0.
         int count1 = lcsRecursive(x, y, m, n - 1, 0);
         int count2 = lcsRecursive(x, y, m - 1, n, 0);
-
         // The result is the maximum of the current extended suffix and any other substrings found.
         return Math.max(count, Math.max(count1, count2));
     }

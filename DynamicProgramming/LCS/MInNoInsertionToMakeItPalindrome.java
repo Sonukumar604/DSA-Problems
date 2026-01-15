@@ -5,7 +5,7 @@
  * Number of insertions = length of string - length of LPS.
  * The LPS is found by calculating the Longest Common Subsequence (LCS) of the string and its reverse.
  */
-public class MinNoInsertionToMakeItPalindrome { // Corrected class name typo
+public class MInNoInsertionToMakeItPalindrome {
     /**
      * Computes the length of the Longest Common Subsequence (LCS) of two strings.
      *
