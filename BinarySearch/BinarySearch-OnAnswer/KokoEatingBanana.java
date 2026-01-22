@@ -6,6 +6,13 @@ public class KokoEatingBanana {
         }
         return hours;
     }
+    /**
+     * Finds the minimum eating speed k such that Koko can eat all bananas within h hours.
+     *
+     * Time Complexity: O(N * log(MaxPile))
+     *   - Binary search range is from 1 to the maximum pile size.
+     * Space Complexity: O(1)
+     */
     public int minEatingSpeed(int[] piles, int h){
         int low = 1, high = 0;
         for(int bananas: piles){

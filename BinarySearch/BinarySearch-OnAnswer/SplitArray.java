@@ -14,6 +14,13 @@ public class SplitArray {
         }
         return true;
     }
+    /**
+     * Splits the array into k subarrays such that the largest sum of any subarray is minimized.
+     *
+     * Time Complexity: O(N * log(Sum - Max))
+     *   - Binary search range is from max(nums) to sum(nums).
+     * Space Complexity: O(1)
+     */
     public int splitArray(int[] nums, int k){
         int low = 0;
         int high = 0;

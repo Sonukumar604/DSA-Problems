@@ -20,6 +20,13 @@ public class MinimumDaysToMakeMBouquets {
         }
         return false;
     }
+    /**
+     * Finds the minimum number of days to wait to make m bouquets.
+     *
+     * Time Complexity: O(N * log(MaxDay - MinDay))
+     *   - Binary search range is from min(bloomDay) to max(bloomDay).
+     * Space Complexity: O(1)
+     */
     public static int minDays(int[] bloomDay, int m, int k){
         if(bloomDay.length < m * k){
             return -1;

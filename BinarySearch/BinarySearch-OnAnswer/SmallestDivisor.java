@@ -9,6 +9,13 @@ public class SmallestDivisor {
         }
         return sum <= threshold;
     }
+    /**
+     * Finds the smallest divisor such that the sum of division results is less than or equal to the threshold.
+     *
+     * Time Complexity: O(N * log(MaxVal))
+     *   - Binary search range is from 1 to max(nums).
+     * Space Complexity: O(1)
+     */
     public int smallestDivisor(int[] nums, int threshold){
         int left = 1;
         int right = 0;

@@ -14,6 +14,12 @@ public class GuessNumber {
         return 0;
     }
 
+    /**
+     * Guesses the number using Binary Search.
+     *
+     * Time Complexity: O(log N)
+     * Space Complexity: O(1)
+     */
     public static int guessNumber(int n){
         int low = 1;
         int high = n;

@@ -1,4 +1,11 @@
+package Neetcode;
 public class MissingNumber {
+    /**
+     * Finds the kth missing positive number in a sorted array.
+     *
+     * Time Complexity: O(log N) - We perform binary search on the indices.
+     * Space Complexity: O(1)
+     */
     public int findKthPositive(int[] arr, int k){
         int low = 0, high = arr.length - 1;
         while(low <= high){

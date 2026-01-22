@@ -1,4 +1,11 @@
 public class CapacityToPackageShipDdays {
+    /**
+     * Finds the minimum ship capacity required to ship all packages within 'days' days.
+     *
+     * Time Complexity: O(N * log(Sum - Max))
+     *   - Binary search range is from max(weights) to sum(weights).
+     * Space Complexity: O(1)
+     */
     public int shipWithinDays(int[] weights, int days){
         int low = 0, high = 0;
         for(int w : weights){

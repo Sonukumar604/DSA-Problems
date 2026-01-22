@@ -11,6 +11,14 @@ public class AggressiveCows {
         }
         return false;
     }
+    /**
+     * Finds the largest minimum distance possible between any two cows.
+     *
+     * Time Complexity: O(N log N + N * log(maxDist))
+     *   - O(N log N) for sorting the stalls.
+     *   - O(N * log(maxDist)) for the binary search on the answer, where maxDist is the range of positions.
+     * Space Complexity: O(1) (ignoring sort stack space).
+     */
     public int aggressiveCows(int[] stalls, int cows){
         java.util.Arrays.sort(stalls);
         int low = 1;

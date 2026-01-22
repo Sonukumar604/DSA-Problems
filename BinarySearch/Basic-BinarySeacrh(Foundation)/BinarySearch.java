@@ -1,4 +1,10 @@
 public class BinarySearch{
+    /**
+     * Iterative implementation of Binary Search.
+     *
+     * Time Complexity: O(log N)
+     * Space Complexity: O(1)
+     */
     public static int BinarySearchIterative(int[] arr, int target){
         int low = 0, high = arr.length - 1;
         while(low <= high){
@@ -9,6 +15,12 @@ public class BinarySearch{
         }
         return -1;
     }
+    /**
+     * Recursive implementation of Binary Search.
+     *
+     * Time Complexity: O(log N)
+     * Space Complexity: O(log N) due to the recursion stack.
+     */
     public static int BinarySearchRecursive(int[] arr, int low, int high, int target){
         if(low > high){
             return -1;

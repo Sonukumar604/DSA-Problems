@@ -1,4 +1,11 @@
 public class SearchInsert {
+    /**
+     * Finds the index where the target is found, or where it should be inserted to maintain order.
+     * This is equivalent to finding the Lower Bound.
+     *
+     * Time Complexity: O(log N)
+     * Space Complexity: O(1)
+     */
     public static int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;

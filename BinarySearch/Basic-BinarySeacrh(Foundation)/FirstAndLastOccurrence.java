@@ -1,4 +1,11 @@
 public class FirstAndLastOccurrence {
+    /**
+     * Finds the first and last occurrence of a target in a sorted array.
+     * Uses two separate binary searches.
+     *
+     * Time Complexity: O(log N) - Two binary searches are performed.
+     * Space Complexity: O(1)
+     */
     public static int[] firstAndLastOccurrence(int[] arr, int target){
         int[] result = {-1, -1};
         // Find first occurrence
@@ -34,16 +41,17 @@ public class FirstAndLastOccurrence {
         }
         return result;
     }
+    /**
+     * Counts the number of occurrences of a target in a sorted array.
+     *
+     * Time Complexity: O(log N)
+     * Space Complexity: O(1)
+     */
     public static int countOccurrence(int[] arr, int target) {
-        int first = firstOccurrence(arr, target);
-        if (first == -1) return 0;      // target not found
         int[] occurrences = firstAndLastOccurrence(arr, target);
         if (occurrences[0] == -1) {
             return 0; // target not found
         }
-
-        int last = lastOccurrence(arr, target);
-        return last - first + 1;
         return occurrences[1] - occurrences[0] + 1;
     }
     public static void main(String[] args) {
