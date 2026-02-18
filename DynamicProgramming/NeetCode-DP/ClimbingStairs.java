@@ -13,6 +13,7 @@ public class ClimbingStairs {
      * @return The number of distinct ways to climb.
      */
     public int climbStairs(int n){
+        if (n < 0) return 0;
         // Base cases: If there are 0 or 1 stairs, there is only one way to climb.
         if(n <= 1) return 1;
 
@@ -36,6 +37,7 @@ public class ClimbingStairs {
      * Space Complexity: O(n) - For the memoization array and recursion stack.
      */
     public int climbStairsMemo(int n) {
+        if (n < 0) return 0;
         int[] memo = new int[n + 1];
         Arrays.fill(memo, -1);
         return solve(n, memo);

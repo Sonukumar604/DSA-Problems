@@ -1,4 +1,6 @@
 
+import java.util.Arrays;
+
 public class HouseRobber {
     public int rob(int[] nums){
         int n = nums.length;
@@ -20,13 +22,16 @@ public class HouseRobber {
         }
         return prev1;
     }
-    //Memoization approach
+    /**
+     * Calculates the maximum amount of money that can be robbed using recursion with memoization.
+     *
+     * Time Complexity: O(n) - Each house index is solved only once.
+     * Space Complexity: O(n) - For the memoization array and recursion stack.
+     */
     public int robMemo(int[] nums) {
         int n = nums.length;
         int[] memo = new int[n];
-        for(int i = 0; i < n; i++){
-            memo[i] = -1;
-        }
+        Arrays.fill(memo, -1);
         return solve(nums, n - 1, memo);
     }
 

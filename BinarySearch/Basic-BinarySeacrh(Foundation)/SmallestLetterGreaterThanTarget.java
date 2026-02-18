@@ -1,22 +1,23 @@
 public class SmallestLetterGreaterThanTarget {
     public char nextGreatestLetter(char[] letters, char target) {
-        int low = 0;
-        int high = letters.length - 1;
-        char result = letters[0]; // Default to the first letter in case all are <= target
+        int left = 0;
+        int right = letters.length - 1;
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
 
-            if (letters[mid] > target) {
-                result = letters[mid]; // Potential answer found
-                high = mid - 1; // Look for a smaller letter on the left side
+            if (letters[mid] <= target) {
+                left = mid + 1;
             } else {
-                low = mid + 1; // Move to the right side
+                right = mid - 1;
             }
         }
 
-        return result;
+        // wrap around
+        return letters[left % letters.length];
     }
+
+   
     public static void main(String[] args) {
         SmallestLetterGreaterThanTarget solution = new SmallestLetterGreaterThanTarget();
         char[] letters = {'c', 'f', 'j'};
