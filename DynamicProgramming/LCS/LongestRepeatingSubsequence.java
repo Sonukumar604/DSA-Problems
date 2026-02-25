@@ -4,7 +4,6 @@ public class LongestRepeatingSubsequence {
         // that characters at the same index in x cannot be considered a match.
         // So, if x[i-1] == y[j-1] (where y is also x), then i must not be equal to j.
         int[][] t = new int[n + 1][n + 1];
-
         for(int i = 0; i <= n; i++){
             for(int j = 0; j <= n; j++){
                 if(i == 0 || j == 0){
