@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 public class SortByBits {
 
@@ -23,21 +24,30 @@ public class SortByBits {
      * - We create a new `List<Integer>` and a new `int[]` result array, both of which require space proportional to the number of elements in the input array.
      *
      * Dry Run:
-     * Input: arr = [0, 1, 2, 3, 4, 5]
+     * Input: arr = [0, 1, 2, 3, 4, 5, 6, 7, 8]
      *
      * Bit Counts:
-     * - 0 (0) -> 0 bits
-     * - 1 (1) -> 1 bit
-     * - 2 (10) -> 1 bit
-     * - 3 (11) -> 2 bits
-     * - 4 (100) -> 1 bit
-     * - 5 (101) -> 2 bits
+     * - 0 (0)      -> 0 bits
+     * - 1 (1)      -> 1 bit
+     * - 2 (10)     -> 1 bit
+     * - 3 (11)     -> 2 bits
+     * - 4 (100)    -> 1 bit
+     * - 5 (101)    -> 2 bits
+     * - 6 (110)    -> 2 bits
+     * - 7 (111)    -> 3 bits
+     * - 8 (1000)   -> 1 bit
      *
      * Sorting Process:
-     * 1. Group by bit count: {0: [0]}, {1: [1, 2, 4]}, {2: [3, 5]}
-     * 2. Sort within groups (secondary sort): The groups are already sorted numerically.
-     * 3. Combine groups based on bit count: [0] -> [1, 2, 4] -> [3, 5]
-     * Final Result: [0, 1, 2, 4, 3, 5]
+     * 1. Group by bit count:
+     *    - 0 bits: [0]
+     *    - 1 bit:  [1, 2, 4, 8]
+     *    - 2 bits: [3, 5, 6]
+     *    - 3 bits: [7]
+     * 2. Sort within groups (secondary sort): The numbers within each group are already sorted numerically.
+     *    For example, for 1 bit, the order is 1, 2, 4, 8. For 2 bits, it's 3, 5, 6.
+     * 3. Combine groups based on bit count (primary sort):
+     *    Concatenate the groups in ascending order of bit counts.
+     * Final Result: [0, 1, 2, 4, 8, 3, 5, 6, 7]
      */
     public int[] sortByBits(int[] arr) {
         List<Integer> list = new ArrayList<>();
@@ -61,4 +71,23 @@ public class SortByBits {
         return result;
     }
 
+    public static void main(String[] args) {
+        SortByBits solution = new SortByBits();
+
+        // Test Case 1 (from dry run)
+        int[] arr1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println("Original Array 1: " + Arrays.toString(arr1));
+        int[] result1 = solution.sortByBits(arr1);
+        System.out.println("Sorted Array 1:   " + Arrays.toString(result1));
+        System.out.println("Expected:         [0, 1, 2, 4, 8, 3, 5, 6, 7]");
+
+        System.out.println();
+
+        // Test Case 2
+        int[] arr2 = {1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1};
+        System.out.println("Original Array 2: " + Arrays.toString(arr2));
+        int[] result2 = solution.sortByBits(arr2);
+        System.out.println("Sorted Array 2:   " + Arrays.toString(result2));
+        System.out.println("Expected:         [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]");
+    }
 }

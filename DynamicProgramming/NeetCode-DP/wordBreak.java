@@ -3,6 +3,43 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Checks if the string s can be segmented into a space-separated sequence of one or more dictionary words.
+ *
+ * ### Approach: Dynamic Programming (Bottom-Up)
+ * We use a boolean array `dp` where `dp[i]` represents whether the substring `s[0...i]` can be segmented into words from the dictionary.
+ * - Base Case: `dp[0] = true` (an empty string is a valid segmentation).
+ * - Transition: For each index `i` from 1 to `n`, we check all possible split points `j` (0 to `i-1`).
+ *   If `dp[j]` is true (meaning `s[0...j]` is valid) AND the substring `s[j...i]` is in the dictionary, then `dp[i]` becomes true.
+ *
+ * ### Time and Space Complexity
+ * - **Time Complexity:** O(N^3), where N is the length of string `s`.
+ *   - The nested loops run in O(N^2).
+ *   - The `substring` method and hash set lookup take O(N) in the worst case.
+ * - **Space Complexity:** O(N) for the `dp` array and O(M) for the HashSet where M is the total characters in `wordDict`.
+ *
+ * ### Dry Run
+ * Input: `s = "leetcode"`, `wordDict = ["leet", "code"]`
+ * Length `n = 8`. `dp` array of size 9 initialized to false. `dp[0] = true`.
+ *
+ * 1. **i = 1 to 3:** No valid words found ending at these positions. `dp[1..3]` remain false.
+ * 2. **i = 4 (substring "leet"):**
+ *    - Check `j = 0`: `dp[0]` is true. Substring `s.substring(0, 4)` is "leet".
+ *    - "leet" is in `wordDict`.
+ *    - Set `dp[4] = true`. Break inner loop.
+ * 3. **i = 5 to 7:**
+ *    - Inner loop checks `j` from 0 to `i-1`.
+ *    - For `j=4`, `dp[4]` is true, but substrings "c", "co", "cod" are not in dict.
+ *    - `dp[5..7]` remain false.
+ * 4. **i = 8 (substring "leetcode"):**
+ *    - `j = 0`: `dp[0]` is T, "leetcode" not in dict.
+ *    - ...
+ *    - `j = 4`: `dp[4]` is T. Substring `s.substring(4, 8)` is "code".
+ *    - "code" is in `wordDict`.
+ *    - Set `dp[8] = true`. Break.
+ *
+ * Final Result: Return `dp[8]` which is `true`.
+ */
 public class wordBreak {
     /**
      * Approach 1: Brute Force Recursion
