@@ -1,0 +1,182 @@
+1️⃣ Character Frequency Template
+
+Used in:
+
+Valid Anagram
+
+First Unique Character
+
+Ransom Note
+
+Permutation problems
+
+Fixed lowercase letters
+int[] freq = new int[26];
+
+for (char ch : s.toCharArray()) {
+    freq[ch - 'a']++;
+}
+🧠 2️⃣ Two Pointer Template (Opposite Ends)
+
+Used in:
+
+Palindrome
+
+Reverse String
+
+Valid Palindrome
+
+Reverse Vowels
+
+int left = 0;
+int right = s.length() - 1;
+
+while (left < right) {
+    
+    if (condition) {
+        left++;
+        right--;
+    } else {
+        // adjust pointer
+    }
+}
+🧠 3️⃣ Sliding Window Template (Variable Size)
+
+Used in:
+
+Longest substring without repeating
+
+At most K distinct chars
+
+Minimum window substring
+
+int left = 0;
+Map<Character, Integer> map = new HashMap<>();
+
+for (int right = 0; right < s.length(); right++) {
+    
+    char ch = s.charAt(right);
+    map.put(ch, map.getOrDefault(ch, 0) + 1);
+    
+    while (window_invalid_condition) {
+        char leftChar = s.charAt(left);
+        map.put(leftChar, map.get(leftChar) - 1);
+        left++;
+    }
+    
+    // update answer
+}
+🧠 4️⃣ Fixed Size Sliding Window
+
+Used in:
+
+Anagram in string
+
+Maximum vowels in substring of size k
+
+for (int i = 0; i < k; i++) {
+    // initialize window
+}
+
+for (int i = k; i < n; i++) {
+    // remove left
+    // add right
+}
+🧠 5️⃣ Prefix Matching (Vertical Scanning)
+
+Used in:
+
+Longest Common Prefix
+
+String first = strs[0];
+
+for (int i = 0; i < first.length(); i++) {
+    char ch = first.charAt(i);
+    
+    for (int j = 1; j < strs.length; j++) {
+        if (i >= strs[j].length() || strs[j].charAt(i) != ch)
+            return first.substring(0, i);
+    }
+}
+🧠 6️⃣ Mapping Template (Isomorphic Type)
+Map<Character, Character> map1 = new HashMap<>();
+Map<Character, Character> map2 = new HashMap<>();
+
+for (int i = 0; i < s.length(); i++) {
+    char c1 = s.charAt(i);
+    char c2 = t.charAt(i);
+    
+    if (map1.containsKey(c1) && map1.get(c1) != c2) return false;
+    if (map2.containsKey(c2) && map2.get(c2) != c1) return false;
+    
+    map1.put(c1, c2);
+    map2.put(c2, c1);
+}
+🧠 7️⃣ Stack Template (Parentheses Problems)
+Stack<Character> stack = new Stack<>();
+
+for (char ch : s.toCharArray()) {
+    
+    if (opening) {
+        stack.push(ch);
+    } else {
+        if (stack.isEmpty() || mismatch)
+            return false;
+        stack.pop();
+    }
+}
+
+return stack.isEmpty();
+🧠 8️⃣ Depth Counter (Parentheses Simplified)
+
+Used in:
+
+Remove Outer Parentheses
+
+int depth = 0;
+StringBuilder sb = new StringBuilder();
+
+for (char ch : s.toCharArray()) {
+    
+    if (ch == '(') {
+        if (depth > 0) sb.append(ch);
+        depth++;
+    } else {
+        depth--;
+        if (depth > 0) sb.append(ch);
+    }
+}
+🧠 9️⃣ Greedy Right-to-Left Scan
+
+Used in:
+
+Largest Odd Number in String
+
+for (int i = s.length() - 1; i >= 0; i--) {
+    if ((s.charAt(i) - '0') % 2 == 1)
+        return s.substring(0, i + 1);
+}
+return "";
+🧠 🔟 Reverse Words Template
+String[] parts = s.trim().split("\\s+");
+Collections.reverse(Arrays.asList(parts));
+return String.join(" ", parts);
+🧠 1️⃣1️⃣ Build String Efficiently
+
+Always use:
+
+StringBuilder sb = new StringBuilder();
+sb.append(ch);
+return sb.toString();
+
+Never use + in loops.
+
+🧠 1️⃣2️⃣ Substring Enumeration Template
+
+Used in brute force:
+
+for (int i = 0; i < n; i++) {
+    for (int j = i; j < n; j++) {
+        String sub = s.substring(i, j + 1);
+    }
+}

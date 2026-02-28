@@ -17,7 +17,6 @@ public class RotateString {
         String combined = s + s;
         return combined.contains(goal);
     }
-
     public static void main(String[] args) {
         RotateString solution = new RotateString();
 

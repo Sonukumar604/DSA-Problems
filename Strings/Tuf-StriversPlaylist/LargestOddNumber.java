@@ -42,7 +42,6 @@ public class LargestOddNumber {
         // If no odd digit is found, no odd number substring exists.
         return "";
     }
-
     public static void main(String[] args) {
         LargestOddNumber solution = new LargestOddNumber();
         String num1 = "52";

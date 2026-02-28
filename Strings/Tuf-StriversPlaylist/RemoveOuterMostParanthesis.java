@@ -41,12 +41,9 @@
  */
 public class RemoveOuterMostParanthesis {
     public String removeOuterParentheses(String s) {
-
         StringBuilder result = new StringBuilder();
         int depth = 0;
-
         for (char ch : s.toCharArray()) {
-
             if (ch == '(') {
                 if (depth > 0) {
                     result.append(ch);
@@ -59,10 +56,8 @@ public class RemoveOuterMostParanthesis {
                 }
             }
         }
-
         return result.toString();
     }
-
     public static void main(String[] args) {
         RemoveOuterMostParanthesis solution = new RemoveOuterMostParanthesis();
         String s1 = "(()())(())";

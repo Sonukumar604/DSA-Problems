@@ -63,6 +63,16 @@ public class BinaryNumberWithAlternatingBits {
         return true; // All bits are alternating
     }
 
+    public boolean hasAlternatingBitsBitwise(int n) {
+        String s = Integer.toBinaryString(n);
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         BinaryNumberWithAlternatingBits solution = new BinaryNumberWithAlternatingBits();
 
