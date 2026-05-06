@@ -1,0 +1,87 @@
+// 1.) Fast and slow pointer
+
+ListNode slow = head, fast = head;
+while(fast != null && fast.next != null){
+    slow = slow.next;
+    fast = fast.next.next;
+}
+
+//a.) middle of list
+
+public ListNode findMiddle(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+    
+    while (fast != null && fast.next != null) {
+        slow = slow.next;         // moves 1 step
+        fast = fast.next.next;    // moves 2 steps
+    }
+    return slow; // Slow is now at the middle
+}
+//b.) cycle detection
+
+public boolean hasCycle(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+    
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        
+        if (slow == fast) return true; // They met!
+    }
+    return false;
+}
+//c.) palindrome
+
+public boolean isPalindrome(ListNode head) {
+    if (head == null || head.next == null) return true;
+
+    // 1. Find middle
+    ListNode slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // 2. Reverse second half
+    ListNode prev = null;
+    while (slow != null) {
+        ListNode nextNode = slow.next;
+        slow.next = prev;
+        prev = slow;
+        slow = nextNode;
+    }
+
+    // 3. Compare halves
+    ListNode left = head, right = prev;
+    while (right != null) {
+        if (left.val != right.val) return false;
+        left = left.next;
+        right = right.next;
+    }
+    return true;
+}
+//d.) nth form end
+
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode slow = dummy;
+    ListNode fast = dummy;
+
+    // Move fast pointer so there is a gap of n nodes
+    for (int i = 0; i <= n; i++) {
+        fast = fast.next;
+    }
+
+    // Move both until fast reaches the end
+    while (fast != null) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    // slow.next is the node to be deleted
+    slow.next = slow.next.next;
+    return dummy.next;
+}
