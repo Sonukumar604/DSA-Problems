@@ -1,0 +1,153 @@
+//1) Recursion- 
+
+//a)Linear recursion-
+1)Sum of n numbers
+public static int sum(int n) {
+    if (n <= 0) {
+        return 0; // Base case
+    }
+    return n + sum(n - 1); // Recursive call
+}
+2)factorial
+public static int factorial(int n) {
+    if (n <= 1) {
+        return 1; // Base case
+    }
+    return n * factorial(n - 1); // Recursive call
+}
+
+//b)Binary recursion-
+1)Fibonacci
+public static int fibonacci(int n) {
+    if (n <= 1) {
+        return n; // Base cases: fib(0)=0, fib(1)=1
+    }
+    // Binary recursion: two calls per step
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+2)Tower of Hanoi
+public static void solveHanoi(int n, char source, char destination, char auxiliary) {
+    if (n == 1) {
+        System.out.println("Move disk 1 from " + source + " to " + destination);
+        return;
+    }
+
+    // Call 1: Move n-1 disks to the auxiliary rod
+    solveHanoi(n - 1, source, auxiliary, destination);
+
+    // The actual move
+    System.out.println("Move disk " + n + " from " + source + " to " + destination);
+
+    // Call 2: Move n-1 disks from auxiliary to destination
+    solveHanoi(n - 1, auxiliary, destination, source);
+}
+c)Divide and Conquer recursion
+1)Merge sort
+// Main function that sorts the array
+    public static void sort(int[] arr, int left, int right) {
+        if (left < right) {
+            // Find the midpoint to split the array into two halves
+            int mid = left + (right - left) / 2;
+
+            // BINARY RECURSION HAPPENS HERE:
+            // 1. Recursive call for the left half
+            sort(arr, left, mid);
+
+            // 2. Recursive call for the right half
+            sort(arr, mid + 1, right);
+
+            // Merge the two sorted halves
+            merge(arr, left, mid, right);
+        }
+    }
+2)Quick sort
+public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // pi is partitioning index, arr[pi] is now at right place
+            int pi = partition(arr, low, high);
+
+            // BINARY RECURSION:
+            // Recursive call for the left side of pivot
+            quickSort(arr, low, pi - 1);
+            
+            // Recursive call for the right side of pivot
+            quickSort(arr, pi + 1, high);
+        }
+    }
+d)Tree recursion
+1)Maximum Depth of Binary Tree
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+
+        return 1 + Math.max(left, right);
+    }
+}
+2)Diameter of Binary tree
+class Solution {
+    int diameter = 0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        depth(root);
+        return diameter;
+    }
+
+    private int depth(TreeNode root) {
+        if (root == null) return 0;
+
+        int left = depth(root.left);
+        int right = depth(root.right);
+
+        diameter = Math.max(diameter, left + right);
+
+        return 1 + Math.max(left, right);
+    }
+}
+e)Include/Exclude recursion
+1)class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
+
+    public List<List<Integer>> subsets(int[] nums) {
+        solve(nums, 0, new ArrayList<>());
+        return ans;
+    }
+
+    private void solve(int[] nums, int i, List<Integer> path) {
+        if (i == nums.length) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+
+        path.add(nums[i]);
+        solve(nums, i + 1, path);
+        path.remove(path.size() - 1);
+
+        solve(nums, i + 1, path);
+    }
+}
+2)class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
+
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        solve(nums, 0, new ArrayList<>());
+        return ans;
+    }
+
+    private void solve(int[] nums, int i, List<Integer> path) {
+        if (i == nums.length) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+
+        path.add(nums[i]);
+        solve(nums, i + 1, path);
+        path.remove(path.size() - 1);
+
+        while (i + 1 < nums.length && nums[i] == nums[i + 1]) i++;
+        solve(nums, i + 1, path);
+    }
+}
